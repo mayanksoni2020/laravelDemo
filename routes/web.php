@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('demogroup');
+})->middleware('demoChecker');
 
 Route::get('/file', function(){
     return 'Hello World!';
@@ -33,17 +33,17 @@ Route::get('admin/{one}/{two}', function($one,$two){
     echo "one is: $one <br>two is: $two";
 });
 
-Route::get('/userinfo/{id}/{course}', 'UserController@userinfo');
+// Route::get('/userinfo/{id}/{course?}', 'UserController@userinfo');
 
 Route::redirect('/hello','/file');
 
-// Route::get('/abc/user', function(){
-//     echo url('abc', 'user');
-// });
+Route::get('/abc/user', function(){
+    echo url('abc', 'user');
+});
 
-Route::get('/xyz/asd', function(){
-    echo "B.tech";
-})->name('user-number');
+// Route::get('/xyz/asd', function(){
+//     echo "B.tech";
+// })->name('user-number');
 Route::get('/user2', function(){
     echo route('user-number');
 });
@@ -58,8 +58,11 @@ Route::get('/page', function(){
     // return json_decode(file_get_contents($path), true);
 });
 
-// Route::get('/demo','DemoController@index');
+Route::get('/demo','DemoController@index');
 
 Route::view('/form1','form');
 Route::post('/userform','DemoController@submit');
+
+Route::get('/userinfo/{id}/{course?}', 'UserController@userinfo')->where(['id'=>"[0-9]+"]);
+
 ?>
