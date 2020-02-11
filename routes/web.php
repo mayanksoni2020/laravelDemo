@@ -60,9 +60,17 @@ Route::get('/page', function(){
 
 Route::get('/demo','DemoController@index');
 
+// CA Questions routing starts
 Route::view('/form1','form');
 Route::post('/userform','DemoController@submit');
 
 Route::get('/userinfo/{id}/{course?}', 'UserController@userinfo')->where(['id'=>"[0-9]+"]);
+// CA Questions routing ends
+
+Route::get('/blade','BladeController@index');
+
+Route::view('/child1','child');
+Route::view('/company1','company');
+
 
 ?>
